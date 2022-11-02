@@ -1,0 +1,37 @@
+<h1 class="page-header">Ebay Home Assignment - Avishai Peretz</h1>
+
+<form [formGroup]="formObj" (ngSubmit)="searchTopic()">
+
+  <div class="input-box">
+    <label>Search Wiki topic</label>
+    <input formControlName="searchValue" placeholder="Type here...">
+  </div>
+
+  <button type="submit" class="search-btn" [disabled]="!formObj.valid">Search</button>
+</form>
+
+<table *ngIf="data.length">
+  <thead>
+  <tr>
+    <th>Word</th>
+    <th>Rank</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <ng-container *ngFor="let item of data">
+    <tr>
+      <td>{{item.word}}</td>
+      <td>
+        <app-rank [rank]="item.rank"></app-rank>
+      </td>
+    </tr>
+  </ng-container>
+  </tbody>
+</table>
+
+<div class="spinner-container" *ngIf="showLoading">
+  <div class="spinner-border" role="status" >
+    <span class="sr-only loading"></span>
+  </div>
+</div>
